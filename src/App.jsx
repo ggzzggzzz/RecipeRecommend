@@ -4,6 +4,8 @@ import InputScreen from './components/InputScreen';
 import RecipeScreen from './components/RecipeScreen';
 import CameraScreen from './components/CameraScreen';
 import RecipeDetailScreen from './components/RecipeDetailScreen';
+import LoginScreen from './components/LoginScreen';
+import SignupScreen from './components/SignupScreen';
 
 function App() {
   const [screen, setScreen] = useState('home');
@@ -44,6 +46,8 @@ function App() {
         setIngredients={setIngredients}
       />
     );
+  if (screen === 'login') return <LoginScreen setScreen={setScreen} />;
+  if (screen === 'signup') return <SignupScreen setScreen={setScreen} />;
   return null;
 }
 

@@ -1,6 +1,8 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from passlib.hash import bcrypt
+import cx_Oracle
 from ultralytics import YOLO
 import requests
 import re
@@ -14,6 +16,53 @@ from dotenv import load_dotenv
 
 
 app = FastAPI()
+
+# Oracle DB 연결 정보
+dsn = cx_Oracle.makedsn("localhost", 1521, service_name="XEPDB1")
+conn = cx_Oracle.connect(user="HihgTechChef", password="1234", dsn=dsn)
+cursor = conn.cursor()
+
+# -------------------------------
+# 회원가입 API
+# -------------------------------
+@app.post("/signup")
+def signup(user_id: str = Form(...), nickname: str = Form(...), email: str = Form(...), password: str = Form(...)):
+    hashed_pw = bcrypt.hash(password)
+
+    # 중복 확인
+    cursor.execute("SELECT * FROM USERS WHERE USER_ID = :1 OR EMAIL = :2", (user_id, email))
+    if cursor.fetchone():
+        raise HTTPException(status_code=400, detail="이미 사용 중인 아이디 또는 이메일입니다.")
+
+    # 삽입
+    try:
+        cursor.execute("""
+            INSERT INTO USERS (USER_ID, NICKNAME, EMAIL, PASSWORD)
+            VALUES (:1, :2, :3, :4)
+        """, (user_id, nickname, email, hashed_pw))
+        conn.commit()
+        return {"message": "회원가입 성공!"}
+    except Exception as e:
+        conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# -------------------------------
+# 로그인 API
+# -------------------------------
+@app.post("/login")
+def login(user_id: str = Form(...), password: str = Form(...)):
+    cursor.execute("SELECT PASSWORD, NICKNAME FROM USERS WHERE USER_ID = :1 AND STATUS = 'Y'", (user_id,))
+    row = cursor.fetchone()
+
+    if not row:
+        raise HTTPException(status_code=401, detail="존재하지 않는 계정입니다.")
+    
+    hashed_pw, nickname = row
+    if not bcrypt.verify(password, hashed_pw):
+        raise HTTPException(status_code=401, detail="비밀번호가 일치하지 않습니다.")
+
+    return {"message": "로그인 성공!", "nickname": nickname}
 
 
 

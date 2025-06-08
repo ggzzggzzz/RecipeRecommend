@@ -20,8 +20,8 @@ export default function HomeScreen({ setScreen }) {
       {/* 메뉴 버튼 */}
       {menuOpen && (
         <div style={{ marginBottom: '1rem' }}>
-          <button style={styles.button} onClick={() => alert('로그인 페이지 이동')}>로그인</button>
-          <button style={styles.button} onClick={() => alert('회원가입 페이지 이동')}>회원가입</button>
+          <button style={styles.button} onClick={() => setScreen('login')}>로그인</button>
+          <button style={styles.button} onClick={() => setScreen('signup')}>회원가입</button>
           <button style={styles.button} onClick={() => setScreen('mypage')}>마이페이지</button>
         </div>
       )}

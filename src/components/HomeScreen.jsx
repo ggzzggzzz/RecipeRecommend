@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { styles } from '../styles/commonStyles';
 
-export default function HomeScreen({ setScreen }) {
+export default function HomeScreen({ setScreen , nickname }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -16,6 +16,13 @@ export default function HomeScreen({ setScreen }) {
           ≡
         </span> 
       </div>
+
+       {/* 환영 메시지 */}
+      {nickname && (
+        <div style={{ margin: '1rem 0', fontSize: '0.95em', color: '#555' }}>
+          👋 {nickname}님, 환영합니다!
+        </div>
+      )}
 
       {/* 메뉴 버튼 */}
       {menuOpen && (

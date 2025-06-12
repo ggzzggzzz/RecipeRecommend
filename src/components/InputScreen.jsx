@@ -1,4 +1,5 @@
 import { styles } from '../styles/commonStyles';
+import { useEffect } from 'react';
 
 export default function InputScreen({
   ingredients,
@@ -6,16 +7,86 @@ export default function InputScreen({
   input,
   setInput,
   setScreen,
+   userId // ← 추가
 }) {
-  const addIngredient = (item) => {
-    if (item && !ingredients.includes(item)) {
-      setIngredients([...ingredients, item]);
+  
+  useEffect(() => {
+  const fetchIngredients = async () => {
+    try {
+      const res = await fetch(`http://localhost:8000/user-ingredients?user_id=${userId}`);
+      const data = await res.json();
+      if (res.ok) {
+        setIngredients(data.ingredients || []);
+      } else {
+        console.error(data.detail || '식재료 불러오기 실패');
+      }
+    } catch (err) {
+      console.error('보유 식재료 조회 실패:', err);
     }
-  }; 
-
-  const removeIngredient = (item) => {
-    setIngredients(ingredients.filter((i) => i !== item));
   };
+
+  if (userId) {
+    fetchIngredients();
+  }
+}, [userId]);
+
+
+
+  const addIngredient = async (item) => {
+  const trimmedItem = item.trim();
+  if (!trimmedItem || ingredients.includes(trimmedItem)) return;
+
+  try {
+    const res = await fetch('http://localhost:8000/add-ingredient', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        user_id: userId,
+        name: trimmedItem,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.detail);  // 예: '등록되지 않은 식재료입니다'
+    } else {
+      // ✅ 성공 시에만 화면에 추가
+      setIngredients([...ingredients, trimmedItem]);
+      console.log(data.message);
+    }
+  } catch (err) {
+    console.error('식재료 등록 실패:', err);
+  }
+};
+
+
+
+  const removeIngredient = async (item) => {
+  setIngredients(ingredients.filter((i) => i !== item));
+
+  try {
+    const res = await fetch('http://localhost:8000/remove-ingredient', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        user_id: userId,
+        name: item,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.detail);
+    } else {
+      console.log(data.message);
+    }
+  } catch (err) {
+    console.error('식재료 삭제 실패:', err);
+  }
+};
+
 
   return (
     <div style={styles.container}>
@@ -47,10 +118,11 @@ export default function InputScreen({
       </div>
       <button
         style={styles.addBtn}
-        onClick={() => {
-          addIngredient(input.trim());
-          setInput('');
-        }}
+       onClick={() => {
+        addIngredient(input);
+        setInput('');
+      }}
+
       >
         추가
       </button>

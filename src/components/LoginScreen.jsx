@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { styles } from '../styles/commonStyles';
 
-export default function LoginScreen({ setScreen }) {
-  const [userId, setUserId] = useState('');
+export default function LoginScreen({ setScreen, setUserId , setNickname }) {
+  const [loginId, setLoginId] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
@@ -12,7 +12,7 @@ export default function LoginScreen({ setScreen }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({
-          user_id: userId,
+          user_id: loginId,
           password: password,
         }),
       });
@@ -21,7 +21,9 @@ export default function LoginScreen({ setScreen }) {
 
       if (response.ok) {
         alert(`${data.nickname}님, 환영합니다!`);
-        setScreen('home'); // 로그인 후 홈으로 이동
+        setUserId(loginId);  // props로 받은 함수 호출!
+        setNickname(data.nickname); // 닉네임 상태 설정
+        setScreen('home');
       } else {
         setError(data.detail || '로그인 실패');
       }
@@ -41,8 +43,8 @@ export default function LoginScreen({ setScreen }) {
       <input
         style={styles.input}
         placeholder="아이디"
-        value={userId}
-        onChange={(e) => setUserId(e.target.value)}
+        value={loginId}
+        onChange={(e) => setLoginId(e.target.value)}
       />
       <input
         style={styles.input}

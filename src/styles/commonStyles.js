@@ -29,6 +29,15 @@ export const styles = {
     border: 'none',
     cursor: 'pointer',
   },
+recipeCard: {
+  backgroundColor: '#fff',
+  padding: '15px',
+  marginBottom: '10px',
+  borderRadius: '12px',
+  boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+},
+
+
   button: {
     width: '100%',
     padding: '32px 0',

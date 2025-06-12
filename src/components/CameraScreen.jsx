@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-export default function CameraScreen({ setScreen, setIngredients }) {
+export default function CameraScreen({ setScreen, setIngredients , userId}) {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [detected, setDetected] = useState([]);
@@ -28,38 +28,58 @@ export default function CameraScreen({ setScreen, setIngredients }) {
   }, [setScreen]);
 
   const captureAndDetect = async () => {
-    const video = videoRef.current;
-    const canvas = canvasRef.current;
+  const video = videoRef.current;
+  const canvas = canvasRef.current;
 
-    if (video && canvas) {
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  if (video && canvas) {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-      const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
-      const formData = new FormData();
-      formData.append('image', blob, `captured_${Date.now()}.png`);
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
+    const formData = new FormData();
+    formData.append('image', blob, `captured_${Date.now()}.png`);
 
-      try {
-        const res = await fetch('http://localhost:8000/upload-and-detect', {
+    try {
+      const res = await fetch('http://localhost:8000/upload-and-detect', {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await res.json();
+      const detectedList = result.unique_objects;
+      setDetected(detectedList);
+      alert('감지된 재료: ' + detectedList.join(', '));
+
+      // ✅ 감지된 재료 DB 등록
+      for (const name of detectedList) {
+        const dbRes = await fetch('http://localhost:8000/add-ingredient', {
           method: 'POST',
-          body: formData,
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({
+            user_id: userId,
+            name: name,
+          }),
         });
-        const result = await res.json();
-        setDetected(result.unique_objects);
-        alert('감지된 재료: ' + result.unique_objects.join(', '));
 
-        // 선택 사항: 기존 재료에 추가
-        if (setIngredients) {
-          setIngredients((prev) => [...new Set([...prev, ...result.unique_objects])]);
+        const dbResult = await dbRes.json();
+        if (!dbRes.ok) {
+          console.warn(`❌ ${name} 등록 실패: ${dbResult.detail}`);
+        } else {
+          console.log(`✅ ${name} 등록 완료`);
         }
-
-      } catch (err) {
-        alert('감지 실패: ' + err.message);
       }
+
+      // ✅ 화면에 추가
+      if (setIngredients) {
+        setIngredients((prev) => [...new Set([...prev, ...detectedList])]);
+      }
+
+    } catch (err) {
+      alert('감지 실패: ' + err.message);
     }
-  };
+  }
+};
 
   return (
     <div style={{ padding: 20 }}>

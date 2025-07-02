@@ -24,7 +24,18 @@
 
 # 시작 가이드
 # 요구사항 : requirments 파일, 시작 방법
-# 설치 및 실행 : 
+# 설치 및 실행 
+
+### ⚙️ 설치 및 실행
+
+```bash
+# 백엔드 실행 (FastAPI)
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload
+
+# 프론트엔드 실행 (React)
+npm run ys
 # 기술 스택 :
 프론트 : 리액트
 백 : 파이썬, FastAPI

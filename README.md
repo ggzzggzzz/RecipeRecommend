@@ -12,6 +12,8 @@
 주요기능
 아키텍처
 
+
+
 # 사용자 보유 식재료 기반 맞춤형 요리 레시피 추천 앱 개발
 # **목적**: 폴리텍 하이테크 과정에서 서비스 개발 프로세스를 학습하기 위한 AI 융합 프로젝트 / 4개월
 # 팀 : 황제윤(팀장)[기계학사, 디자인석사], 박한진[], 조영상 - 컴퓨터공학
@@ -36,11 +38,18 @@ uvicorn main:app --reload
 npm run ys
 
 ```
-# 기술 스택 :
-프론트 : 리액트
-백 : 파이썬, FastAPI
-DB : 오라클DB
-AI : YOLOv8, OpenCV
+## 🛠️ 기술 스택
+
+| 구분 | 기술 |
+|------|------|
+| **Frontend** | React, JavaScript, HTML5, CSS3, Axios |
+| **Backend** | Python 3.10, FastAPI, Uvicorn |
+| **Database** | Oracle DB, cx_Oracle |
+| **AI 모델** | YOLOv8 (Ultralytics), OpenCV |
+| **API 연동** | KAMIS 농산물 가격 정보 API |
+| **환경 구성** | Visual Studio Code, Oracle SQL Developer |
+| **버전 관리** | Git, GitHub |
+
 # 화면 구성/API주소
 ![image](https://github.com/user-attachments/assets/a9f16f22-bafa-4a9b-9319-a8acebf30342)
 ![image](https://github.com/user-attachments/assets/e9da8b12-406c-46c1-9d6d-455e462f62c7)

@@ -44,7 +44,7 @@ npm run ys
 |------|------|
 | **Frontend** | React, JavaScript, HTML5, CSS3, Axios |
 | **Backend** | Python 3.10, FastAPI, Uvicorn |
-| **Database** | Oracle DB, cx_Oracle |
+| **Database** | Oracle DB |
 | **AI 모델** | YOLOv8 (Ultralytics), OpenCV |
 | **API 연동** | KAMIS 농산물 가격 정보 API |
 | **환경 구성** | Visual Studio Code, Oracle SQL Developer |

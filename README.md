@@ -38,7 +38,7 @@ AI : YOLOv8, OpenCV
 프론트엔드 UI 구현 및 React 연동,
 백엔드 연동 및 데이터 처리 흐름 구성,
 사용자 재료 기반 레시피 추천 알고리즘 구현
-# 아키텍쳐
+# 아키텍처 및 디렉토리 구조
 디렉토리 구조
 아키텍처
 ![image](https://github.com/user-attachments/assets/9598558d-7a36-4ec1-8fa3-6d03d1345c55)

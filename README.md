@@ -42,6 +42,13 @@ npm run ys
 DB : 오라클DB
 AI : YOLOv8, OpenCV
 # 화면 구성/API주소
+![image](https://github.com/user-attachments/assets/a9f16f22-bafa-4a9b-9319-a8acebf30342)
+![image](https://github.com/user-attachments/assets/e9da8b12-406c-46c1-9d6d-455e462f62c7)
+![image](https://github.com/user-attachments/assets/1065654e-d266-4d50-972e-19bd561917c2)
+![image](https://github.com/user-attachments/assets/54ffdb19-3bbf-4488-ab73-b9e89fb5eb09)
+![image](https://github.com/user-attachments/assets/5040f288-9d12-490b-911c-8d45b5e24e1a)
+
+
 # 주요 기능 및 역할 분담
  **황제윤**
  **박한진**

@@ -1,17 +1,40 @@
-# React + Vite
+카테고리
+프로젝트 제목
+프로젝트 정보
+팀 소개
+프로젝트 소개
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+시작 가이드
+요구사항
+설치및 실행
+기술스택
+화면 구성/API주소
+주요기능
+아키텍처
 
-Currently, two official plugins are available:
+# 제목 : 사용자 보유 식재료 기반 맞춤형 요리 레시피 추천 앱 개발
+# 정보 : 폴리텍 하이테크 과정에서 서비스 개발 프로세스를 학습하기 위한 목적으로 AI 융합 프로젝트 / 4개월
+# 팀 : 황제윤(팀장)[기계학사, 디자인석사], 박한진[], 조영상[]
+# 프로젝트 소개 : 
+바쁜 일상 속 식재료를 효율적으로 활용하지 못하는 사용자 예를 들어, 1인가구나 자취생을 대상으로
+보유한 식재료를 기반으로 요리 가능한 음식 메뉴와 레시피를 추천해주고
+음식 단가를 고려해 합리적인 선택을 할 수 있도록 가격 정보를 제공하는 서비스 개발
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# 시작 가이드
+# 요구사항 : requirments 파일, 시작 방법
+# 설치 및 실행 : 
+# 기술 스택 :
+프론트 : 리액트
+백 : 파이썬, FastAPI
+DB : 오라클DB
+AI : YOLOv8, OpenCV
+# 화면 구성/API주소
+# 주요 기능
+황제윤 :
+박한진 : 
+조영상 : 
+# 아키텍쳐
+디렉토리 구조
+아키텍처
+![image](https://github.com/user-attachments/assets/9598558d-7a36-4ec1-8fa3-6d03d1345c55)
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
-
-# 박한진
-## 황제윤
-### 조영상

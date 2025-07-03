@@ -28,8 +28,8 @@ npm run ys
 
 | 구분 | 기술 |
 |------|------|
-| **Frontend** | React, JavaScript, HTML5, CSS3, Axios |
-| **Backend** | Python 3.10, FastAPI, Uvicorn |
+| **Frontend** | React, JavaScript, HTML5, CSS3 |
+| **Backend** | Python 3.10, FastAPI |
 | **Database** | Oracle DB |
 | **AI 모델** | YOLOv8 (Ultralytics), OpenCV |
 | **API 연동** | KAMIS 농산물 가격 정보 API |

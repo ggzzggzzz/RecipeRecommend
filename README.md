@@ -47,6 +47,7 @@ npm run ys
 ![image](https://github.com/user-attachments/assets/5040f288-9d12-490b-911c-8d45b5e24e1a)
 
 # AI 모델
+![test16_yolo](https://github.com/user-attachments/assets/71809323-205a-4560-ac10-fbbb91a952fd)
 
 # 데이터베이스 구조(ERD)
 ![image](https://github.com/user-attachments/assets/f1676428-142a-4e23-9ae3-5992f3269129)

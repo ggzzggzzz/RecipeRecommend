@@ -111,4 +111,6 @@ UseCase다이어그램
 ![image](https://github.com/user-attachments/assets/08f3c69c-a984-4919-8d28-a1c57d5edfa2)
 
 # 향후 개선 사항
-
+###- UI 개선
+###- 모델 학습 강화
+###- 레시피 조리단가 계산 기능 완성

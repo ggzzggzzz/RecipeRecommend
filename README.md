@@ -105,9 +105,10 @@ npm run ys
 
 
 # 아키텍처 및 디렉토리 구조
-디렉토리 구조
-아키텍처
+시스템 아키텍처
 ![image](https://github.com/user-attachments/assets/9598558d-7a36-4ec1-8fa3-6d03d1345c55)
+UseCase다이어그램
+![image](https://github.com/user-attachments/assets/08f3c69c-a984-4919-8d28-a1c57d5edfa2)
 
 # 향후 개선 사항
 

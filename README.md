@@ -48,7 +48,9 @@ npm run ys
 
 # AI 모델
 
-# 데이터 구조
+# 데이터베이스 구조(ERD)
+![image](https://github.com/user-attachments/assets/f1676428-142a-4e23-9ae3-5992f3269129)
+
 
 # 주요 기능 및 역할 분담
  ### 👨‍💻 조영상 (전체 시스템 연동 및 핵심 기능 개발 총괄)
